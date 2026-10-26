@@ -506,8 +506,6 @@ BEGIN
          Interim_Demand_Head_API.C_Modify(crec_.interim_header_id, cattr_, 'DO');
       
       END IF;
-      
-   END LOOP;
-   
+         
 END C_Camro_Cro_Cost_Details_;
 --(+/-) 260408 BR0C130841 M-MRO-048 (FINISH)
