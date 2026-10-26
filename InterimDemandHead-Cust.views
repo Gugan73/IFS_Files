@@ -1,0 +1,84 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: InterimDemandHead
+--  Component:    ORDSTR
+--
+--  IFS Developer Studio Template Version 3.0
+--
+--  Date    Sign    History
+--  ------  ------  ---------------------------------------------------------
+--  251217  TecGayatP  F&F-Build-Issue_Fix : Removed the query from the Public View definition and added it to the Private View definition
+--  250718  TecVijayG  M-MRO-0117 : Added Top_Part_No,remaining_life in Else condition
+--  240416  TecPardhY  M-MRO-098-Bug 12195:Modified Interim_Demand_Head to change the remaining_life column logic
+--  240327  TecKiranK  M-MRO-098: Modified Interim_Demand_Head for Bug Id 12316
+--  240201  XitAmalkC  M-MRO-009 Added more fields to view - Interim_Demand_Head.
+--  231219  XitAmalkC  M-MRO-009 Added more fields to view - Interim_Demand_Head.
+--  231014  XitAmalkC  M-MRO-098 Added more fields to view - Interim_Demand_Head. 
+-----------------------------------------------------------------------------
+
+layer Cust;
+
+-------------------- COMMON COLUMN DEFINITIONS ------------------------------
+
+
+-------------------- PUBLIC VIEW DEFINITIONS --------------------------------
+
+
+
+-------------------- PRIVATE VIEW DEFINITIONS -------------------------------
+
+@Override
+VIEW Interim_Demand_Head IS
+SELECT 
+   --(+)231014 XitAmalkC M-MRO-098 (START)
+   DECODE(interim_head_type, 'MRO', ' - WO', ' - CRO')      c_interim_head_text,
+   --(+)231014 XitAmalkC M-MRO-009 (START)
+   DECODE(interim_head_type, 'MRO', 'WO', 'CRO')            order_type, 
+
+   $IF Component_Wo_SYS.INSTALLED AND Component_Cromfg_SYS.INSTALLED $THEN
+   DECODE(interim_head_type,
+         'MRO',
+         Work_Order_Utility_API.Get_Mro_Part_No(identity1),
+         description)                                       top_part_no,
+   --(+)231014 XitAmalkC M-MRO-009 (FINISH) 
+   DECODE(interim_head_type,
+         'MRO', 
+         Active_Work_Order_API.Get_C_Parent_Wo(identity1),
+         Cro_Head_API.Get_C_Parent_Wo(identity1))           c_parent_wo,
+   DECODE(interim_head_type,
+         'MRO', 
+         Active_Work_Order_API.Get_C_Parent_Cro(identity1),
+         Cro_Head_API.Get_C_Parent_Cro(identity1))          c_parent_cro,
+   DECODE(interim_head_type,
+         'MRO', 
+         Active_Work_Order_API.Get_C_Main_Wo(identity1),
+         Cro_Head_API.Get_C_Main_Wo(identity1))             c_main_wo,
+   DECODE(interim_head_type,
+         'MRO', 
+         Active_Work_Order_API.Get_C_Main_Cro(identity1),
+         Cro_Head_API.Get_C_Main_Cro(identity1))            c_main_cro, 
+   --(+)231014 XitAmalkC M-MRO-009 (START)       
+   DECODE(interim_head_type,
+         'MRO', 
+         Active_Work_Order_API.Get_C_Source_So(identity1),
+         Cro_Head_API.Get_C_Source_So(identity1))           c_source_so, 
+   --(-/+)240416 TecPardhY M-MRO-098-Bug 12195 (START)
+   --Interim_Demand_Head_API.C_Get_Remaining_Life(part_no,serial_begin)  remaining_life,
+   Interim_Demand_Head_API.C_Get_Remaining_Life(DECODE(interim_head_type, 'MRO', Work_Order_Utility_API.Get_Mro_Part_No(identity1), description), serial_begin)  remaining_life,
+   --(-/+)240416 TecPardhY M-MRO-098-Bug 12195 (FINISH)
+   'TAG'                                                    tag_tos,  -- dummy values to be replaced from MRB functionality when it is in place 
+   SYSDATE                                                  tag_date
+   $ELSE
+     NULL top_part_no,
+     NULL c_parent_wo,
+     NULL c_parent_cro,
+     NULL c_main_wo,
+     NULL c_main_cro,
+     NULL c_source_so,
+     NULL remaining_life,
+     NULL tag_tos,  
+     NULL tag_date
+   $END;
+--(+)231014 XitAmalkC M-MRO-009 (FINISH) 
+--(+)231014 XitAmalkC M-MRO-098 (FINISH)
+    

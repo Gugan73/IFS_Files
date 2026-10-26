@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ENTITY xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ifsworld-com:schemas:entity_entity">
+   <CODE_GENERATION_PROPERTIES>
+      <CODE_GENERATION_PROPERTIES>
+      </CODE_GENERATION_PROPERTIES>
+   </CODE_GENERATION_PROPERTIES>
+   <DIAGRAMS>
+      <DIAGRAM>
+         <NAME>State Machine</NAME>
+         <DIAGRAM_TYPE>STATE_MACHINE</DIAGRAM_TYPE>
+      </DIAGRAM>
+   </DIAGRAMS>
+   <COMMENTS>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>// DATE        Sign           History
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>// -------------------------------------------------------------------------
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>//  250408  BR0C130841        M-MRO-048 : (Bug Fixing : 26836) Added two new attributes CCostsLastUpdated and CCostUpdAfterSpmtCrea
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>//  240301  DC0C117601        B-FS-M-MRO-048-2 Added dynamic dependancy for CCamroCroState
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>//  231108  DC0C117601        B-FS-M-MRO-048 Added a new attribute CCamroCroState
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+      <COMMENT>
+         <POSITION>0</POSITION>
+         <COMMENT_TEXT>// -------------------------------------------------------------------------
+</COMMENT_TEXT>
+         <SECTION>top</SECTION>
+      </COMMENT>
+   </COMMENTS>
+   <NAME>InterimDemandHead</NAME>
+   <COMPONENT>ORDSTR</COMPONENT>
+   <LAYER>Cust</LAYER>
+   <ATTRIBUTES>
+      <ATTRIBUTE>
+         <CODE_GENERATION_PROPERTIES>
+            <CODE_GENERATION_PROPERTIES>
+               <DB_TABLE_COLUMN_DECLARE_TYPE>VARCHAR2(15)</DB_TABLE_COLUMN_DECLARE_TYPE>
+               <DYNAMIC_COMPONENT_REFERENCE>CMOD</DYNAMIC_COMPONENT_REFERENCE>
+            </CODE_GENERATION_PROPERTIES>
+         </CODE_GENERATION_PROPERTIES>
+         <NAME>CCamroCroState</NAME>
+         <IS_PRIMARY_KEY>0</IS_PRIMARY_KEY>
+         <IS_PARENT_KEY>0</IS_PARENT_KEY>
+         <IS_PUBLIC>1</IS_PUBLIC>
+         <IS_MANDATORY>0</IS_MANDATORY>
+         <IS_SERVER_GENERATED>0</IS_SERVER_GENERATED>
+         <IS_UPDATE_ALLOWED>1</IS_UPDATE_ALLOWED>
+         <IS_UPDATE_ALLOWED_IF_NULL>0</IS_UPDATE_ALLOWED_IF_NULL>
+         <IS_DEFAULT_LOV>1</IS_DEFAULT_LOV>
+         <IS_QUERYABLE>1</IS_QUERYABLE>
+         <IS_DERIVED>0</IS_DERIVED>
+         <DATATYPE>ENUMERATION</DATATYPE>
+         <ENUMERATION_NAME>CCamroCroStatus</ENUMERATION_NAME>
+      </ATTRIBUTE>
+      <ATTRIBUTE>
+         <NAME>CCostsLastUpdated</NAME>
+         <IS_PRIMARY_KEY>0</IS_PRIMARY_KEY>
+         <IS_PARENT_KEY>0</IS_PARENT_KEY>
+         <IS_PUBLIC>1</IS_PUBLIC>
+         <IS_MANDATORY>0</IS_MANDATORY>
+         <IS_SERVER_GENERATED>0</IS_SERVER_GENERATED>
+         <IS_UPDATE_ALLOWED>1</IS_UPDATE_ALLOWED>
+         <IS_UPDATE_ALLOWED_IF_NULL>0</IS_UPDATE_ALLOWED_IF_NULL>
+         <IS_DEFAULT_LOV>0</IS_DEFAULT_LOV>
+         <IS_QUERYABLE>1</IS_QUERYABLE>
+         <IS_DERIVED>0</IS_DERIVED>
+         <DATATYPE>TIMESTAMP</DATATYPE>
+      </ATTRIBUTE>
+      <ATTRIBUTE>
+         <CODE_GENERATION_PROPERTIES>
+            <CODE_GENERATION_PROPERTIES>
+               <DB_TABLE_COLUMN_DECLARE_TYPE>VARCHAR2(5)</DB_TABLE_COLUMN_DECLARE_TYPE>
+               <DB_TABLE_COLUMN_DEFAULT_VALUE>&apos;FALSE&apos;</DB_TABLE_COLUMN_DEFAULT_VALUE>
+            </CODE_GENERATION_PROPERTIES>
+         </CODE_GENERATION_PROPERTIES>
+         <NAME>CCostUpdAfterSpmtCrea</NAME>
+         <IS_PRIMARY_KEY>0</IS_PRIMARY_KEY>
+         <IS_PARENT_KEY>0</IS_PARENT_KEY>
+         <IS_PUBLIC>1</IS_PUBLIC>
+         <IS_MANDATORY>0</IS_MANDATORY>
+         <IS_SERVER_GENERATED>0</IS_SERVER_GENERATED>
+         <IS_UPDATE_ALLOWED>1</IS_UPDATE_ALLOWED>
+         <IS_UPDATE_ALLOWED_IF_NULL>0</IS_UPDATE_ALLOWED_IF_NULL>
+         <IS_DEFAULT_LOV>0</IS_DEFAULT_LOV>
+         <IS_QUERYABLE>1</IS_QUERYABLE>
+         <IS_DERIVED>0</IS_DERIVED>
+         <DATATYPE>ENUMERATION</DATATYPE>
+         <ENUMERATION_NAME>FndBoolean</ENUMERATION_NAME>
+      </ATTRIBUTE>
+   </ATTRIBUTES>
+</ENTITY>
