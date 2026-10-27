@@ -310,7 +310,7 @@ IS
          AND    idh.interim_header_id                   = ios.interim_header_id(+)
          AND    io.interim_order_no                     = ios.interim_order_no(+)
          AND    Shop_Ord_Code_API.Decode(io.order_code) = 'Assembly'
-         AND    idh.identity1                           = identity1_;
+         AND    idh.identity1                           = identity1_
 
       CURSOR Get_Top_Part_Tag_Tos_Cro IS
          SELECT ios.identity1, ios.identity2, ios.identity3
@@ -343,7 +343,7 @@ IS
          AND    idh.interim_header_id                   = ios.interim_header_id(+)
          AND    io.interim_order_no                     = ios.interim_order_no(+)
          AND    Shop_Ord_Code_API.Decode(io.order_code) = 'Assembly'
-         AND    idh.serial_begin                        = C_Order_Str_Wo_Cro_Util_API.Get_Serial_No_For_SO(idh.interim_header_id, ios.interim_order_no, ios.identity1, ios.identity2, ios.identity3, io.order_code)
+         AND    idh.serial_begin                        = C_Order_Str_Wo_Cro_Util_API.Get_Serial_No_For_SO(idh.interim_header_id, ios.interim_order_no, ios.identity1, ios.identity2, ios.identity3, io.order_code
          AND    idh.top_part_no                         = c_part_no_
          AND    idh.part_no                             = io.part_no
          AND    idh.c_parent_cro                        = c_parent_cro_;
